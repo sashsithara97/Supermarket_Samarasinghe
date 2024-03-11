@@ -1,0 +1,137 @@
+/* Validation Colors for Input Controls */
+.rowbcolor{
+    margin-top: 5px;
+    border-bottom: 2px solid #17045d;
+}
+
+.cbody{
+    overflow: hidden;
+    transition: height 1s, width 1s, padding 1s, visibility 1s, opacity 0.5s ease-out;
+}
+
+.formcontent{
+    border: 2px solid #1b0b2e;
+    border-radius: 10px;
+
+}
+
+.nav-item a{
+    color:white;!important;
+
+}
+.nav-item a:hover{
+    color: rgba(224, 216, 250, 0.99);!important;
+
+}
+
+#btnPrintTable{
+
+    color: rgba(255,255,255,0.99);
+}
+
+.cardhead{
+    margin-top: 10px;
+    background-color: rgba(157, 176, 232, 0.97)
+}
+
+.cardstyle{
+    border: 2px solid #0b2e13;
+    border-radius: 20px;
+}
+
+.tblbtnprint{
+    border-radius: 10px;
+    border: 2px solid #a71d2a;
+    color: #ffffff;
+    background-image: linear-gradient(rgba(16, 1, 72, 0.93), rgba(86, 66, 159, 0.68));
+}
+
+
+body::-webkit-scrollbar{
+    border-radius: 10px;
+    background-image: linear-gradient(rgba(16, 1, 72, 0.93), rgba(86, 66, 159, 0.68));
+}
+body::-webkit-scrollbar-thumb {
+    background-color: #09093f;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+      /* creates padding around scroll thumb */
+}
+
+
+
+.invalid .form-control{
+    background-color: pink;
+}
+.valid .form-control{
+    background-color: lightgreen;
+}
+.updated .form-control{
+    background-color: khaki;
+}
+
+.mt-2 .nav-item a{
+    background-color: rgba(27,26,71,0.99);
+}
+.mb-2 .nav-item a {
+    background-color: rgba(30, 29, 84, 0.84);
+}
+
+.file-box{
+    height: 87px;
+    margin-bottom: 7px;
+    border:1px solid #ccc;
+    padding: 5px;
+    position: relative;
+}
+
+.file-box>img{
+    position: absolute;
+    height: 75px;
+    top: 5px;
+    left: 5px;
+}
+
+.file-box>ul{
+    position: absolute;
+    top: 5px;
+    left: 87px;
+    right: 5px;
+    padding: 0px;
+    list-style: none;
+    color: #555;
+    text-align: right;
+}
+
+
+/* Profile Image */
+
+.bntVisibity{
+    cursor: not-allowed;
+}
+
+
+.profileImage {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+}
+
+
+/* Profile Image Dropdown */
+#itemimage img{
+    margin-top: 25px;
+
+}
+.swal-overlay {
+    background-color: rgba(98, 43, 165, 0.45);
+}
+
+/*Methana error log eka ain karanna me comment eka ain karanna*/
+#err{
+display:none;
+
+}
+
+
+

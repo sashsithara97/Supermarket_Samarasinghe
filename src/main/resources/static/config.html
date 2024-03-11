@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BIT Project 2021 : Configuration</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/bootstrap/css/font-awesome.min.css">
+    <script src="resources/jquery/jquery-3.4.1.min.js"></script>
+    <script src="resources/jquery/popper.min.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="resources/script/common.bitproject.js"></script>
+    <script src="resources/script/sweetalert.min.js"></script>
+
+
+    <script>
+
+       window.addEventListener("load", initialize);
+        function initialize() {
+            adminuser = httpRequest("../user/getAdmin","GET");
+            console.log("aaaa ", adminuser);
+            if(adminuser != "" ){
+                swal({
+                    title: "You are already registered !",
+                    text: " Go back to login form \n\n",
+                    icon: "warning",
+                    button: true,
+                    closeOnClickOutside: false,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = "http://localhost:8080/login";
+                    }
+            });
+
+           }
+            valid = "2px solid green"
+            invalid = "2px solid red";
+            updated = "2px solid khaki";
+            initial= "2px solid #BEBAA7"
+
+             loadForm();
+        }
+        function loadForm() {
+           registor = new Object();
+            oldregistor = null;
+
+            var today = new Date();
+            var month = today.getMonth()+1;
+            if(month<10) month = "0"+month;
+            var date = today.getDate();
+            if(date<10) date = "0"+date;
+
+            registor.regdate=today.getFullYear()+"-"+month+"-"+date;
+
+
+
+            txtNumber.value = "";
+            txtCompanyName.value = "";
+            txtCompanyAddress.value = "";
+            txtMobile.value = "";
+
+            txtUsername.value = "";
+            txtPassword.value = "";
+            txtRTPassword.value = "";
+            txtEmail.value = "";
+
+            setStyle(initial)
+        }
+
+        function setStyle(style) {
+            txtNumber.style.border = style;
+            txtCompanyName.style.border = style;
+            txtCompanyAddress.style.border = style;
+            txtMobile.style.border = style;
+
+            txtUsername.style.border = style;
+            txtPassword.style.border = style;
+            txtRTPassword.style.border = style;
+            txtEmail.style.border = style;
+        }
+
+        function getError() {
+            errors = "";
+
+            return errors;
+        }
+
+        function btnAddMC() {
+         console.log(registor);
+
+           error = getError();
+            if(error==""){
+               response = httpRequest("../registration","POST",registor);
+
+               // response = 0;
+                if(response!=0){
+                    swal({
+                        title: "You are already registered !",
+                        text: " Go back to login form \n\n",
+                        icon: "warning",
+                        button: true,
+                        closeOnClickOutside: false,
+                    }).then((willDelete) => {
+                        if (willDelete) {
+                            window.location.href = "http://localhost:8080/login";
+                        }
+                    });
+                }else {
+                    swal({
+                        title: "Registration Successfully ...!",
+                        text: " Go back to login form \n\n",
+                        icon: "sucess",
+                        button: true,
+                        closeOnClickOutside: false,
+                    }).then((willDelete) => {
+                        if (willDelete) {
+                            window.location.href = "http://localhost:8080/login";
+                        }else{}
+                    });
+                }
+            }
+
+        }
+        
+        function passwordBinder() {
+            var pattern = new RegExp("^[0-9]{4,8}$");
+            var password = txtPassword.value;
+            var retypepassword = txtRTPassword.value;
+            if(pattern.test(password) && password==retypepassword) {
+                registor.password = password;
+                txtPassword.style.border = valid;
+                txtRTPassword.style.border = valid;
+            }
+            else
+            {
+                registor.password = null;
+                txtRTPassword.style.border = invalid;
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container-fluid p-5">
+    <div class="card">
+        <div class="card-header bg-info">
+            <h3>configuration</h3>
+        </div>
+        <div class="card-body">
+
+            <div class="container-fluid mt-3">
+                <form onsubmit="return false">
+                    <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="form-group row">
+                            <label class="col-md-4" for="txtNumber"> <b>Start Number : <span style="color:red; font-size:24px">*</span></b></label>
+                            <div class=" col-md-6">
+                                <input type="text" id="txtNumber" placeholder="Enter Number Here"
+                                       class="form-control" required onkeyup="textFieldBinder(txtNumber,'^([0-9]{6})$','registor','number','oldregistor')"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4" for="txtCompanyName"> <b>Company Name : <span style="color:red; font-size:24px">*</span></b></label>
+                            <div class=" col-md-6">
+                                <input type="text" id="txtCompanyName" placeholder="Enter Company Name Here"
+                                       class="form-control" required
+                                       onkeyup="textFieldBinder(txtCompanyName,'^([a-zA-Z]+|[a-zA-Z]+\\s{1}[a-zA-Z]{1,}|[a-zA-Z]+\\s{1}[a-zA-Z]{3,}\\s{1}[a-zA-Z]{1,})$','registor','fullname','oldregistor')"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4" for="txtCompanyAddress"> <b>Company Address : <span style="color:red; font-size:24px">*</span></b></label>
+                            <div class=" col-md-6">
+                                <textarea id="txtCompanyAddress" placeholder="Enter Company Address Here"
+                                          class="form-control " required
+                                          onkeyup="textFieldBinder(txtCompanyAddress,'^([\\w\\/\\-,\\s]{2,})$','registor','address','oldregistor')"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4" for="txtMobile"> <b>Company Tel-Number : <span style="color:red; font-size:24px">*</span></b></label>
+                            <div class=" col-md-6">
+                                <input type="text" id="txtMobile" placeholder="Enter Company Tel-Number Here"
+                                       class="form-control " required
+                                       onkeyup="textFieldBinder(txtMobile,'^0\\d{9}$','registor','mobile','oldregistor')"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row float-left">
+                            <button type="reset" class="btn btn-warning" style="width: 200px"><i class="fa fa-recycle"></i> Clear </button>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-group row">
+                            <label class="col-md-4" for="txtUsername"> <b>User Name : <span style="color:red; font-size:24px">*</span></b></label>
+                            <div class=" col-md-6">
+                                <input type="text" id="txtUsername" placeholder="Enter User name Here"
+                                       class="form-control " required
+                                       onkeyup="textFieldBinder(txtUsername,'^([A-Za-z]+)$','registor','username','oldregistor')"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4" for="txtPassword"> <b>Password : <span style="color:red; font-size:24px">*</span></b></label>
+                            <div class=" col-md-6">
+                                <input type="password" id="txtPassword" placeholder="Enter Password Here"
+                                       class="form-control " required
+                                       />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4" for="txtRTPassword"> <b>Re-Type Password : <span style="color:red; font-size:24px">*</span></b></label>
+                            <div class=" col-md-6">
+                                <input type="text" id="txtRTPassword" placeholder="Re-Type Password Here"
+                                       class="form-control " required
+                                onkeyup="passwordBinder()"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4" for="txtEmail"> <b>Email Address : <span style="color:red; font-size:24px">*</span></b></label>
+                            <div class=" col-md-6">
+                                <input type="email" id="txtEmail" placeholder="Enter Email Address Here"
+                                       class="form-control " required
+                                       onkeyup="textFieldBinder(txtEmail,'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$','registor','email','oldregistor')"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row float-right">
+
+                            <button type="submit" class="btn btn-success" style="width: 200px" onclick="btnAddMC()"><i class="fa fa-save"></i> Config </button>
+                        </div>
+
+                    </div>
+                </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="card-footer" id="err"></div>
+    </div>
+</div>
+</body>
+</html>

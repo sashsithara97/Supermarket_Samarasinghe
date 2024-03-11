@@ -1,0 +1,11 @@
+.swal-warning {
+  background-color: #f3aea1;
+  padding: 17px;
+  border: 1px solid #F0E1A1;
+  display: block;
+  margin: 22px;
+  text-align: center;
+  color: #131313;
+  font-size: 24px;
+  font-weight: bold;
+}

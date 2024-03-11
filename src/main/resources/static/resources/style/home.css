@@ -1,0 +1,166 @@
+
+
+.tooltip-inner {
+	background-color: rgb(43, 7, 185);
+	color: #ffffff;
+}
+
+
+.dashbordbody{
+	margin: 0px 0px 0px 10px;
+
+/*	//background-color: aqua;*/
+	background:url(../image/15.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: auto;
+	padding: 10px 10px 10px 10px;
+	margin-top: -10px;
+
+}
+
+#calendar{
+	height: 500px;
+}
+ #employeecart {
+	 background-image: url(../image/cart/emp.png);
+	 background-size: cover;
+	 width: 100%;
+	 height: 100%;
+ }
+
+#invoicecart {
+	background-image: url(../image/cart/invoice.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#customercart{
+	background-image: url(../image/cart/customer.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#cordercart {
+	background-image: url(../image/cart/corder.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+#itemcart {
+	background-image: url(../image/cart/item.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+
+#suppliercart {
+	background-image: url(../image/cart/supplier2.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#purchaseordercart {
+	background-image: url(../image/cart/porder.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#grncart {
+	background-image: url(../image/cart/grn5.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#supplierpaymentcart {
+	background-image: url(../image/cart/supplierpayment.png);
+	background-size: cover;
+	margin-top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+
+#supplierreturncart {
+	background-image: url(../image/cart/supplierreturn.png);
+	background-size: cover;
+	margin-top: 0;
+	width: 100%;
+	height: 100%;
+}
+#iteminventrycart {
+	background-image: url(../image/cart/stock.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#privilagecart {
+	background-image: url(../image/cart/privilege.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#usercart {
+	background-image: url(../image/cart/user.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+#quotationcart {
+	background-image: url(../image/cart/quotation.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+#reportcart {
+	background-image: url(../image/cart/report1.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#quotationrequestcart {
+	background-image: url(../image/cart/quotationrequest.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+
+#supportiveuicart {
+	background-image: url(../image/cart/sup2.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+/*
+body{
+	background:url(../image/15.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 900px;
+}
+*/
+
+.navitem {
+	align-content: center;
+	width: auto;
+	height: 80px;
+	background-color: tomato;
+	border-radius: 10px;
+	margin: 5px;
+
+}

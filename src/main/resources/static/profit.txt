@@ -1,0 +1,109 @@
+function getLocalDateTime(format) {
+				var nowdate = new Date();
+				var givendatetime = nowdate.getFullYear()+"-"+getmonthdate(nowdate)+"T"+format;
+				var nowdategiventime = new Date(givendatetime);
+
+				return nowdategiventime.toLocaleTimeString();
+
+			}
+
+
+function generateReport() {
+
+    var expensesreport = httpRequest("/report/expensesreport?sdate=" + dteStartdate.value + "&edate=" + dteEnddate.value + "&type=" + cmbReportType.value + "", "GET");
+    var incomereport = httpRequest("/report/incomereport?sdate=" + dteStartdate.value + "&edate=" + dteEnddate.value + "&type=" + cmbReportType.value + "", "GET");
+    var incomereport1 = httpRequest("/report/incomereport?sdate=" + dteStartdate.value + "&edate=" + dteEnddate.value + "&type=" + cmbReportType.value + "", "GET");
+    // [ ['2022', 'month','amount'] , []]
+
+    var chartLables = new Array();
+    var chartData = new Array();
+    var tableData = new Array();
+    var totalamount = 0;
+
+  // var incomereport = new Array();
+
+    for(var index in incomereport){
+        incomereport[index][2] =  "0.00";
+    }
+    console.log(incomereport)
+
+
+    for(var index in expensesreport){
+        var ind = 0;
+        var extexpmonthyear = false;
+        for (ind in incomereport){
+            if( incomereport[ind][1] == expensesreport[index][1]){
+                extexpmonthyear = true;
+                break;
+            }
+        }
+
+        if(extexpmonthyear){
+
+            incomereport[ind][3] = expensesreport[index][2];
+            incomereport[ind][2] = incomereport1[ind][2];
+
+
+        }else {
+            expensesreport[index][3] = expensesreport[index][2];
+            expensesreport[index][2] = "0.00";
+            incomereport.push(expensesreport[index]);
+
+        }
+    }
+    // incomereport [ [monthyear, income, exp] , []]
+    console.log(incomereport)
+
+    for(var index in incomereport){
+        incomereport[index][4] =  (parseFloat(incomereport[index][2]) - parseFloat(incomereport[index][3])).toFixed(2);
+    }
+    // incomereport [ [monthyear, income, exp, pro] , []]
+    console.log(incomereport)
+
+    for (var index in incomereport){
+        var inco = new Object();
+        inco.yearmonth = incomereport[index][1] ;
+        inco.inamount = incomereport[index][2];
+        inco.examount = incomereport[index][3];
+        inco.proamount =  incomereport[index][4];
+
+        chartLables.push(incomereport[index][2]);
+        chartData.push(incomereport[index][4]);
+
+        tableData.push(inco);
+
+    }
+
+    //fill data into table(tableid , datalist , refill function delete function view function)
+    fillTable('tblProfit', tableData, fillForm, btnDeleteMC, viewitem);
+
+    var tfooter = document.createElement("tfoot");
+    var tfooterrow = document.createElement("tr");
+    var tfooterrowtd = document.createElement("td");
+    tfooterrowtd.colSpan = 3;
+    tfooterrowtd.innerHTML = "Total Profit : Rs. " + totalamount;
+    tfooterrow.appendChild(tfooterrowtd);
+    tfooter.appendChild(tfooterrow);
+    tblProfit.appendChild(tfooter);
+
+
+    const ctx = document.getElementById('mychart').getContext('2d');
+    myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: chartLables,
+            datasets: [{
+                label: 'Profit',
+                data: chartData,
+                backgroundColor: getRandomColorHex(chartLables.length)
+            }],
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}

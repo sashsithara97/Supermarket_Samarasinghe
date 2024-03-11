@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BIT Project 2021 : Payment Management </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/bootstrap/css/font-awesome.min.css">
+
+    <style>
+
+        .table-container {
+            width: auto;
+            overflow-x: scroll !important;
+        }
+        .tooltip-inner {
+            background-color: rgb(23, 4, 93);
+            color: #ffffff;
+        }
+    </style>
+
+    <script defer src="resources/fontawesome/js/solid.js"></script>
+    <script defer src="resources/fontawesome/js/fontawesome.js"></script>
+
+
+    <script src="resources/jquery/jquery-3.4.1.min.js"></script>
+    <script src="resources/jquery/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="resources/jquery/popper.min.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="resources/script/innertablefunctions.js"></script>
+
+    <script src="resources/script/common.bitproject.js"></script>
+    <script src="resources/script/mainWindow.js"></script>
+    <script src="payment.js"></script>
+
+
+    <link rel="stylesheet" href="resources/style/home.css">
+    <link rel="stylesheet" href="resources/style/common.css">
+    <link rel="stylesheet" href="resources/style/style3.css">
+    <script src="resources/script/sweetalert.min.js"></script>
+
+    <!-- template links-->
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="resources/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="resources/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="resources/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="resources/plugins/summernote/summernote-bs4.min.css">
+    <!-- template links-->
+
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand" style="background-color: rgba(23,4,44,0.97)">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="http://localhost:8080/mainwindow" class="nav-link">Home</a>
+            </li>
+
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Navbar Search -->
+            <li class="nav-item">
+                <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                    <i class="fas fa-search"></i>
+                </a>
+                <div class="navbar-search-block">
+                    <form class="form-inline">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                                   aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-navbar" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+        </ul>
+
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar  elevation-4" style="background-color: rgba(23,4,44,0.97)">
+        <!-- Brand Logo -->
+        <a href="" class="brand-link">
+            <img src="resources/dist/img/Samarasinghe.png" alt="Samarasinghe Logo"
+                 class="brand-image img-circle elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-bold text-white">Samarasinghe</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar text-center">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-block">
+                <div class="image">
+                    <img id="profileImage" class="img-circle elevation-2" style="height: 100px; width: 100px">
+
+                </div>
+                <div class="text-center mt-1">
+                    <p class="loggedUserNameField d-inline text-bold" id="lblLogUser">123456</p>
+                </div>
+
+                <div class="text-center mt-1">
+                    <p class="loggedUserNameField d-inline text-bold" id="spnDesignation">123456</p>
+                </div>
+
+            </div>
+        </div>
+        <   <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-lock"></i>
+                        <p style="font-size: 14px">
+                            Sign Out
+                            <i class="fas fa-angle-left right"></i>
+                            <span class="badge badge-warning right"></span>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="#" data-toggle="modal"
+                               data-target="#settingsModal">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Change Password</p></a>
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="#" onclick="btnSignoutMC()">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Sign Out</p></a>
+
+                        </li>
+
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Administration
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item EMPLOYEE">
+                            <a href="http://localhost:8080/employee" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Employee</p>
+                            </a>
+                        </li>
+                        <li class="nav-item PRIVILAGE">
+                            <a href="http://localhost:8080/privilage" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Previlage</p>
+                            </a>
+                        </li>
+                        <li class="nav-item USER">
+                            <a href="http://localhost:8080/user" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">User</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Purchase
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item SUPPLIER">
+                            <a href="http://localhost:8080/supplier" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Supplier</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item QUOATIONREQUEST">
+                            <a href="http://localhost:8080/quotationrequest" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Quotation Request</p>
+                            </a>
+                        </li>
+                        <li class="nav-item QUOTATION">
+                            <a href="http://localhost:8080/quotation" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Quotation</p>
+                            </a>
+                        </li>
+                        <li class="nav-item SUPPLIERRETURN">
+                            <a href="http://localhost:8080/supplierreturn" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Supplier Return</p>
+                            </a>
+                        </li>
+                        <li class="nav-item PORDER">
+                            <a href="http://localhost:8080/porder" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Purchase Order</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item GRN">
+                            <a href="http://localhost:8080/grn" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">GRN </p>
+                            </a>
+                        </li>
+                        <li class="nav-item PAYMENT">
+                            <a href="http://localhost:8080/payment" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Supplier Payment</p>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tree"></i>
+                        <p style="font-size: 14px">
+                            Item
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item ITEM">
+                            <a href="http://localhost:8080/item" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Item</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item BATCH">
+                            <a href="http://localhost:8080/batch" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Batch</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tree"></i>
+                        <p style="font-size: 14px">
+                            Customer
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item CUSTOMER">
+                            <a href="http://localhost:8080/customer" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Customer Registration</p>
+                            </a>
+                        </li>
+                        <li class="nav-item CORDER">
+                            <a href="http://localhost:8080/corder" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Customer Order</p>
+                            </a>
+                        </li>
+                        <li class="nav-item INVOICE">
+                            <a href="http://localhost:8080/invoice" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Invoice</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item CUSTOMERPOINT">
+                            <a href="http://localhost:8080/invoice" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Customer Point</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p style="font-size: 14px">
+                            Report
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item REPORT">
+                            <a href="http://localhost:8080/expences" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Expenses Report</p>
+                            </a>
+                        </li>
+                        <li class="nav-item REPORT">
+                            <a href="http://localhost:8080/income" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Income Report</p>
+                            </a>
+                        </li>
+                        <li class="nav-item REPORT">
+                            <a href="http://localhost:8080/uisupplierarrease" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Supplier Arrears</p>
+                            </a>
+                        </li>
+                        <li class="nav-item REPORT">
+                            <a href="http://localhost:8080/inventory" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Inventory Report</p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Page Content  -->
+    <div class="content-wrapper">
+
+        <!-- Content -->
+        <div class="container-fluid dashbordbody p-0">
+
+            <div class="row" id="ui">
+                <div class="col-md-12">
+                    <div class="card cardstyle">
+                        <div class="card-header  text-center cardhead" style=" background-color: rgba(27,26,71,0.99);">
+                            <h3 class="text-white">Payment Management</h3>
+                        </div>
+
+                        <div class="card-body bg-white">
+
+                            <ul class="nav nav-tabs mb-2">
+                                <li class="nav-item" onclick="changeTab('form')">
+                                    <a class="nav-link active" id="tbForm" href="#">Payment Add Form</a>
+                                </li>
+                                <li class="nav-item" onclick="changeTab('table')">
+                                    <a class="nav-link" id="tbTable" href="#">Payment View Table</a>
+                                </li>
+                            </ul>
+
+                            <div class="row p-3" id="divFrom">
+                                <div class="col-md-12">
+                                    <form class="" id="paymentform" onsubmit="return false">
+
+
+                                        <div class="row">
+                                            <div class="col-md-12 pull-right text-right">
+                                                <p class="font-weight-bold text-dark"><span
+                                                        style="color:red; font-size:24px"><b>*</b></span> Required</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mt-2 mb-2" style="border-radius: 25px; border: 2px solid black"
+                                             id="accordion">
+                                            <div class="card-header" id="headingOne"
+                                                 data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                                 aria-controls="collapseOne" style="border-radius: 22px ;background-color: rgba(67,65,161,0.99);">
+                                                <h3 class="text-white"> Supplier Payment Details </h3>
+                                            </div>
+                                            <div class="card-body bg-white collapse show" id="collapseOne"
+                                                 aria-labelledby="headingOne" data-parent="#accordion">
+
+                                                <!-- POrder Code / Supplier / Quotation / Required date-->
+                                                <div class="row">
+
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="" for="txtBillno"> <b>Bill Number : <span
+                                                                    style="color:red; font-size:18px">*</span></b></label>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i
+                                                                            class="fa fa-barcode"></i></span>
+                                                                </div>
+                                                                <input type="text" id="txtBillno"
+                                                                       placeholder="Enter Bill Number Here"
+                                                                       class="form-control" required disabled/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="" for="cmbSupplier"><b>Supplier : <span
+                                                                    style="color:red; font-size:18px">*</span></b></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i
+                                                                            class="fa fa-user"></i></span>
+                                                                </div>
+                                                            <select id="cmbSupplier" class="form-control" required
+                                                                    onchange="comboBoxBinder(cmbSupplier,'','payment','supplier_id','oldpayment')"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="" for="txtAriase"> <b>Ariase Amount :
+                                                                <span
+                                                                        style="color:red; font-size:18px">*</span></b></label>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text font-weight-bold"> Rs. </span>
+                                                                </div>
+                                                                <input type="text" id="txtAriase"
+                                                                       class="form-control" required
+                                                                       data-toggle="tooltip" data-placement="bottom" title="eg:- Rs.5000"
+                                                                       onkeyup="textFieldBinder(txtAriase,'','payment','ariaseamount','oldpayment')"/>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="" for="cmbGrn"><b>GRN : <span
+                                                                    style="color:red; font-size:18px">*</span></b></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i
+                                                                            class="fa fa-shopping-bag"></i></span>
+                                                                </div>
+                                                            <select id="cmbGrn" class="form-control" required
+                                                                    onchange="comboBoxBinder(cmbGrn,'','payment','grn_id','oldpayment')"></select>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="" for="txtGrnAmount"> <b>GRN Amount :
+                                                                <span
+                                                                        style="color:red; font-size:18px">*</span></b></label>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text font-weight-bold"> Rs. </span>
+                                                                </div>
+                                                                <input type="text" id="txtGrnAmount"
+                                                                       class="form-control" required
+                                                                       data-toggle="tooltip" data-placement="bottom" title="eg:- Rs.5000"
+                                                                       onkeyup="textFieldBinder(txtGrnAmount,'','payment','grnamount','oldpayment')"/>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="" for="txtTotalAmount"> <b>Total Amount :
+                                                                <span
+                                                                        style="color:red; font-size:18px">*</span></b></label>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text font-weight-bold"> Rs. </span>
+                                                                </div>
+                                                                <input type="text" id="txtTotalAmount"
+                                                                       class="form-control" required
+                                                                       data-toggle="tooltip" data-placement="bottom" title="eg:- Rs.5000"
+                                                                       onkeyup="textFieldBinder(txtTotalAmount,'','payment','totalamount','oldpayment')"/>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="" for="cmbPaymethod"><b>Payment Method : <span
+                                                                    style="color:red; font-size:18px">*</span></b></label>
+                                                            <div class="input-group">
+
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i
+                                                                            class="fa fa-bell"></i></span>
+                                                                </div>
+                                                            <select id="cmbPaymethod" class="form-control" required
+                                                                    onchange="comboBoxBinder(cmbPaymethod,'','payment','paymentmethod_id','oldpayment')"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Description-->
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="" for="txtDescription"> <b>Description : </b></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i
+                                                                            class="fa fa-sticky-note"></i></span>
+                                                                </div>
+                                                            <textarea id="txtDescription"
+                                                                      placeholder="Enter Description Here"
+                                                                      class="form-control" data-toggle="tootip" data-placement="bottom" title="eg: New"
+                                                                      onkeyup="textFieldBinder(txtDescription,'^([\\w\\/\\-,\\s]{2,})$','payment','description','oldpayment')"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-md-6 text-right">
+
+                                                        <div class="form-row">
+                                                            <label class="col-md-4" for="txtPaidAmount"> <b>Paid Amount
+                                                                :
+                                                                <span
+                                                                        style="color:red; font-size:18px">*</span></b></label>
+                                                            <div class="col-md-8">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text font-weight-bold"> Rs. </span>
+                                                                    </div>
+                                                                    <input type="text" id="txtPaidAmount"
+                                                                           class="form-control" required
+                                                                           data-toggle="tooltip" data-placement="bottom" title="eg:- Rs.5000"
+                                                                           onkeyup="textFieldBinder(txtPaidAmount,'','payment','paidamount','oldpayment')"/>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-row">
+                                                            <label class="col-md-4" for="txtBalanceAmount"> <b>Balance
+                                                                Amount :
+                                                                <span
+                                                                        style="color:red; font-size:18px">*</span></b></label>
+                                                            <div class="col-md-8">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text font-weight-bold"> Rs. </span>
+                                                                    </div>
+                                                                    <input type="text" id="txtBalanceAmount"
+                                                                           class="form-control" required
+                                                                           data-toggle="tooltip" data-placement="bottom" title="eg:- Rs.5000"
+                                                                           onkeyup="textFieldBinder(txtBalanceAmount,'','payment','balanceamount','oldpayment')"/>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <!-- Addeddate / status/ Added By / Total Amount-->
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="" for="cmbPayStatus"> <b>Payment Status: <span
+                                                                    style="color:red; font-size:18px">*</span></b></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i
+                                                                            class="fa fa-bell"></i></span>
+                                                                </div>
+                                                            <select id="cmbPayStatus" class="form-control" required
+                                                                    onchange="comboBoxBinder(cmbPayStatus,'','payment','paymentstatus_id','oldpayment')"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="" for="cmbEmployee"><b>Added By : <span
+                                                                    style="color:red; font-size:18px">*</span></b></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i
+                                                                            class="fa fa-user"></i></span>
+                                                                </div>
+                                                            <select id="cmbEmployee" class="form-control" required
+                                                                    onchange="comboBoxBinder(cmbEmployee,'','payment','employee_id','oldpayment')"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="" for="dtePaidDate"> <b> Paid Date :
+                                                                <span style="color:red; font-size:18px">*</span></b></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i
+                                                                            class="fa fa-calendar-alt"></i></span>
+                                                                </div>
+                                                            <input type="datetime-local" id="dtePaidDate"
+                                                                   class="form-control"
+                                                                   required
+                                                                   onchange="textFieldBinder(dtePaidDate,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$','payment','paiddatetime','oldpayment')"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right mt-2 ">
+                                            <button class="btn btn-info " type="button" id="btnClear"
+                                                    style="width: 25%">
+                                                <i class="fas fa-recycle mr-2"></i> Clear
+                                            </button>
+                                            <button class="btn btn-warning" type="submit" id="btnUpdate"
+                                                    style="width: 25%;display: none"><i class="fas fa-edit mr-2"></i>
+                                                Update
+                                            </button>
+                                            <button class="btn btn-success" style="width: 25%" type="submit"
+                                                    id="btnAdd">
+                                                <i class='fas fa-plus-circle mr-2'></i>Add
+                                            </button>
+
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="row p-3 formcontent" id="divTable">
+                                <div class="container-fluid">
+
+                                    <input type="button" class="btn tblbtnprint font-weight-bold" value="Print Table"
+                                           id="btnPrintTable" onclick="btnPrintTableMC()"/>
+                                    <div class="float-right">
+                                        <input placeholder="Search" class="form-control" type="text"
+                                               id="txtSearchName"/>
+                                    </div>
+
+                                </div>
+
+
+                                <hr/>
+                                <div class="table-responsive" id="tableParent" class="table-container ml-2">
+
+                                    <script>
+
+                                        function getNameColumn(ob) {
+                                            return ob.callingname + "(" + ob.number + ")";
+                                        }
+
+                                        var metadata = [
+                                            {
+                                                name: 'Bill No.',
+                                                search: true,
+                                                datatype: 'text',
+                                                property: 'billno'
+                                            },
+                                            {
+                                                name: 'Paid Date',
+                                                search: true,
+                                                datatype: 'text',
+                                                property: 'paiddatetime'
+                                            },
+                                            {
+                                                name: 'Supplier',
+                                                search: true,
+                                                datatype: 'text',
+                                                property: 'supplier_id.companyname'
+                                            },
+
+                                            {
+                                                name: 'Ariase Amount',
+                                                search: true,
+                                                datatype: 'text',
+                                                property: 'ariaseamount'
+                                            },
+
+                                            {
+                                                name: 'GRN ',
+                                                search: true,
+                                                datatype: 'text',
+                                                property: 'grn_id.grncode'
+                                            },
+                                           {
+                                                name: 'GRN Amount ',
+                                                search: true,
+                                                datatype: 'text',
+                                                property: 'grnamount'
+                                            }
+
+
+                                        ];
+                                        table("tableParent", "tblPayment", metadata, true);
+
+                                    </script>
+
+
+                                </div>
+
+                                <div>
+                                    <div style="display: inline-block ; float: left">
+                                        <select class="form-control input" id="cmbPageSize"
+                                                style="width: 80px;">
+                                            <option selected value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="30">30</option>
+                                            <option value="500">500</option>
+                                            <option value="1000">1000</option>
+                                        </select>
+                                        <script>
+                                            cmbPageSize.onchange = function chnagePageSize() {
+                                                activepage = 1;
+                                                btnSearchMC();
+                                            };
+                                        </script>
+                                    </div>
+                                    <div style="display: inline-block; margin-left: 10px;">
+                                        <ul id="pagination" class="pagination"></ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="card-footer">
+                            <div id="err">
+                                <h3>Error Log</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<table id="printformtable" class="table table-striped table-bordered mt-5" style="display: none">
+    <tbody>
+
+    <tr>
+        <td>Bill Number :</td>
+        <td id="x"><input type="text" id="tdpaybillno" style="border: 0px solid; border-color: white"></td>
+    </tr>
+    <tr>
+        <td>Supplier :</td>
+        <td id="tdpaysupplier"></td>
+    </tr>
+    <tr>
+        <td>Ariase Amount :</td>
+        <td id="tdpayariaseamount"></td>
+    </tr>
+    <tr>
+        <td>GRN Code :</td>
+        <td id="tdpaygrn"></td>
+    </tr>
+    <tr>
+        <td>GRN Amount :</td>
+        <td id="tdpaygrnamount"></td>
+    </tr>
+
+    <tr>
+        <td>Total Amount :</td>
+        <td id="tdpaytotalamount"></td>
+    </tr>
+
+    <tr>
+        <td>Paid Amount :</td>
+        <td id="tdpaypaidamount"></td>
+    </tr>
+
+    <tr>
+        <td>Balance Amount :</td>
+        <td id="tdpaybalanceamount"></td>
+    </tr>
+    <tr>
+        <td>Payment Method :</td>
+        <td id="tdpaypaymentmethod"></td>
+    </tr>
+
+    <tr>
+        <td>Payment Status :</td>
+        <td id="tdpaypaymentstatus"></td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="overlay"></div>
+
+<!-- Settings Modal-->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog"
+     aria-labelledby="settingsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" id="modalContent">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"><i
+                        class="fas fa-cog"></i> Settings</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form id="changePasswordForm" onsubmit="return false">
+                    <div class="form-row">
+                        <!-- Username -->
+                        <div class="form-group col-md-12">
+                            <label for="txtUsernameView" class="text-blue">
+                                <b>Username</b>
+                            </label>
+                            <div readonly class="form-control-plaintext"
+                                 id="txtUsernameView"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Current Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtCurrentPassword"
+                                   class="text-blue"><b>Current Password</b> <i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtCurrentPassword"
+                                   onkeyup="textFieldBinder(txtCurrentPassword, '^[0-9]{5,}$', 'changePassword', 'currentPassword', 'oldChangePassword')">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- New Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtNewPassword" class="text-blue"><b>New
+                                Password</b><i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtNewPassword"
+                                   onkeyup="passwordFieldBinder(txtNewPassword, txtConfirmPassword, '^[0-9]{5,}$', 'changePassword', '', 'oldChangePassword')">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Confirm Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtConfirmPassword"
+                                   class="text-blue"><b>Confirm
+                                Password</b><i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtConfirmPassword"
+                                   onkeyup="passwordFieldBinder(txtNewPassword, txtConfirmPassword, '^[0-9]{5,}$', 'changePassword', 'newPassword', 'oldChangePassword')">
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="brnClosechnagepasswordmodle" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary"
+                        onclick="btnSaveChangePasswordMC()">Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Cheque Detail Modal -->
+<div class="modal fade" id="chequemodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Enter Cheque Details</h5>
+                <button type="button" class="close cdmclose" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <label class="" for="txtChequeNumber"> <b>Cheque Number :
+                            <span
+                                    style="color:red; font-size:18px">*</span></b></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text font-weight-bold"> </span>
+                            </div>
+                            <input type="text" id="txtChequeNumber"
+                                   data-toggle="tooltip"
+                                   data-placement="bottom"
+                                   title="Eg: Rs.1000"
+                                   placeholder="Enter Cheque Number Here"
+                                   class="form-control" required
+                                   onkeyup="textFieldBinder(txtChequeNumber,'','payment','chequenumber','oldpayment')"/>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="" for="dteChequeDate"> <b> Cheque Date :
+                                <span style="color:red; font-size:18px">*</span></b></label>
+                            <input type="date" id="dteChequeDate" class="form-control"
+                                   required
+                                   onchange="textFieldBinder(dteChequeDate,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$','payment','chequedate','oldpayment')"/>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success cdmclose" data-dismiss="modal">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Deposit Detail Modal -->
+<div class="modal fade" id="depositmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Enter Deposit Details</h5>
+                <button type="button" class="close ddmclose" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label class="" for="txtBankName"> <b>Bank Name :
+                            <span
+                                    style="color:red; font-size:18px">*</span></b></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text font-weight-bold"> </span>
+                            </div>
+                            <input type="text" id="txtBankName"
+                                   data-toggle="tooltip"
+                                   data-placement="bottom"
+                                   title="Eg: Sampath"
+                                   placeholder="Enter Bank Name Here"
+                                   class="form-control" required
+                                   onkeyup="textFieldBinder(txtBankName,'','payment','bankname','oldpayment')"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="" for="txtAccountName"> <b>Account Name :
+                            <span
+                                    style="color:red; font-size:18px">*</span></b></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text font-weight-bold"> </span>
+                            </div>
+                            <input type="text" id="txtAccountName"
+                                   data-toggle="tooltip"
+                                   data-placement="bottom"
+                                   title="Eg: Sampath"
+                                   placeholder="Enter Bank Name Here"
+                                   class="form-control" required
+                                   onkeyup="textFieldBinder(txtAccountName,'','payment','accountname','oldpayment')"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label class="" for="txtAccountNumber"> <b>Account Number :
+                            <span
+                                    style="color:red; font-size:18px">*</span></b></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text font-weight-bold"> </span>
+                            </div>
+                            <input type="text" id="txtAccountNumber"
+                                   data-toggle="tooltip"
+                                   data-placement="bottom"
+                                   title="Eg: Sampath"
+                                   placeholder="Enter Account Number Here"
+                                   class="form-control" required
+                                   onkeyup="textFieldBinder(txtAccountNumber,'','payment','accountnumber','oldpayment')"/>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="" for="dteDepositDate"> <b> Deposit Date :
+                                <span style="color:red; font-size:18px">*</span></b></label>
+                            <input type="datetime-local" id="dteDepositDate" class="form-control"
+                                   required
+                                   onchange="textFieldBinder(dteDepositDate,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$','payment','depositedatetime','oldpayment')"/>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success cdmclose" data-dismiss="modal">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Online transfer Detail Modal -->
+<div class="modal fade" id="onlinetransfermodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Online Transfer Details</h5>
+                <button type="button" class="close ddmclose" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+               <div class="form-row">
+
+                   <div class="col-md-12">
+                       <div class="form-group">
+                           <label class="" for="dteOnlineDepositDate"> <b> Deposit Date :
+                               <span style="color:red; font-size:18px">*</span></b></label>
+                           <input type="datetime-local" id="dteOnlineDepositDate" class="form-control"
+                                  required
+                                  onchange="textFieldBinder(dteOnlineDepositDate,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$','payment','depositedatetime','oldpayment')"/>
+                       </div>
+                   </div>
+
+                   <div class="col-md-12">
+                       <label class="" for="txtOnlineTransferId"> <b>Transfer ID :
+                           <span
+                                   style="color:red; font-size:18px">*</span></b></label>
+                       <div class="input-group mb-3">
+                           <div class="input-group-prepend">
+                               <span class="input-group-text font-weight-bold"> </span>
+                           </div>
+                           <input type="text" id="txtOnlineTransferId"
+                                  data-toggle="tooltip"
+                                  data-placement="bottom"
+                                  title="Eg: 1452639784"
+                                  placeholder="Enter Transfer ID Here"
+                                  class="form-control" required
+                                  onkeyup="textFieldBinder(txtOnlineTransferId,'','payment','transferid','oldpayment')"/>
+                       </div>
+                   </div>
+
+               </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success cdmclose" data-dismiss="modal">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Template Links-->
+
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+
+<!-- Summernote -->
+<script src="resources/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="resources/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="resources/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="resources/dist/js/demo.js"></script>
+
+<!-- Template Links-->
+</body>
+</html>
+

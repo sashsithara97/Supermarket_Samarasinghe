@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BIT Project 2021 : Employee Management </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/bootstrap/css/font-awesome.min.css">
+
+    <style>
+
+        .table-container {
+            width: auto;
+            overflow-x: scroll !important;
+        }
+        .tooltip-inner {
+            background-color: rgb(23, 4, 93);
+            color: #ffffff;
+        }
+    </style>
+
+    <script defer src="resources/fontawesome/js/solid.js"></script>
+    <script defer src="resources/fontawesome/js/fontawesome.js"></script>
+
+
+    <script src="resources/jquery/jquery-3.4.1.min.js"></script>
+    <script src="resources/jquery/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="resources/jquery/popper.min.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="resources/script/innertablefunctions.js"></script>
+
+    <script src="resources/script/common.bitproject.js"></script>
+    <script src="resources/script/mainWindow.js"></script>
+    <script src="employee.js"></script>
+
+
+    <link rel="stylesheet" href="resources/style/home.css">
+    <link rel="stylesheet" href="resources/style/common.css">
+    <link rel="stylesheet" href="resources/style/style3.css">
+    <script src="resources/script/sweetalert.min.js"></script>
+
+    <!-- template links-->
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="resources/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="resources/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="resources/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="resources/plugins/summernote/summernote-bs4.min.css">
+    <!-- template links-->
+
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand" style="background-color: rgba(23,4,44,0.97)">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="http://localhost:8080/mainwindow" class="nav-link">Home</a>
+            </li>
+
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Navbar Search -->
+            <li class="nav-item">
+                <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                    <i class="fas fa-search"></i>
+                </a>
+                <div class="navbar-search-block">
+                    <form class="form-inline">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                                   aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-navbar" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+        </ul>
+
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar  elevation-4" style="background-color: rgba(23,4,44,0.97)">
+        <!-- Brand Logo -->
+        <a href="" class="brand-link">
+            <img src="resources/dist/img/Samarasinghe.png" alt="Samarasinghe Logo"
+                 class="brand-image img-circle elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-bold text-white">Samarasinghe</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar text-center">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-block">
+                <div class="image">
+                    <img id="profileImage" class="img-circle elevation-2" style="height: 100px; width: 100px">
+
+                </div>
+                <div class="text-center mt-1">
+                    <p class="loggedUserNameField d-inline text-bold" id="lblLogUser">123456</p>
+                </div>
+
+                <div class="text-center mt-1">
+                    <p class="loggedUserNameField d-inline text-bold" id="spnDesignation">123456</p>
+                </div>
+
+            </div>
+        </div>
+        <   <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-lock"></i>
+                        <p style="font-size: 14px">
+                            Sign Out
+                            <i class="fas fa-angle-left right"></i>
+                            <span class="badge badge-warning right"></span>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="#" data-toggle="modal"
+                               data-target="#settingsModal">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Change Password</p></a>
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="#" onclick="btnSignoutMC()">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Sign Out</p></a>
+
+                        </li>
+
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Administration
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item EMPLOYEE">
+                            <a href="http://localhost:8080/employee" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Employee</p>
+                            </a>
+                        </li>
+                        <li class="nav-item PRIVILAGE">
+                            <a href="http://localhost:8080/privilage" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Previlage</p>
+                            </a>
+                        </li>
+                        <li class="nav-item USER">
+                            <a href="http://localhost:8080/user" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">User</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Purchase
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item SUPPLIER">
+                            <a href="http://localhost:8080/supplier" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Supplier</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item QUOATIONREQUEST">
+                            <a href="http://localhost:8080/quotationrequest" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Quotation Request</p>
+                            </a>
+                        </li>
+                        <li class="nav-item QUOTATION">
+                            <a href="http://localhost:8080/quotation" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Quotation</p>
+                            </a>
+                        </li>
+                        <li class="nav-item SUPPLIERRETURN">
+                            <a href="http://localhost:8080/supplierreturn" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Supplier Return</p>
+                            </a>
+                        </li>
+                        <li class="nav-item PORDER">
+                            <a href="http://localhost:8080/porder" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Purchase Order</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item GRN">
+                            <a href="http://localhost:8080/grn" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">GRN </p>
+                            </a>
+                        </li>
+                        <li class="nav-item PAYMENT">
+                            <a href="http://localhost:8080/payment" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Supplier Payment</p>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tree"></i>
+                        <p style="font-size: 14px">
+                            Item
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item ITEM">
+                            <a href="http://localhost:8080/item" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Item</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item BATCH">
+                            <a href="http://localhost:8080/batch" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Batch</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tree"></i>
+                        <p style="font-size: 14px">
+                            Customer
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item CUSTOMER">
+                            <a href="http://localhost:8080/customer" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Customer Registration</p>
+                            </a>
+                        </li>
+                        <li class="nav-item CORDER">
+                            <a href="http://localhost:8080/corder" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Customer Order</p>
+                            </a>
+                        </li>
+                        <li class="nav-item INVOICE">
+                            <a href="http://localhost:8080/invoice" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Invoice</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item CUSTOMERPOINT">
+                            <a href="http://localhost:8080/invoice" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Customer Point</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p style="font-size: 14px">
+                            Report
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item REPORT">
+                            <a href="http://localhost:8080/expences" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Expenses Report</p>
+                            </a>
+                        </li>
+                        <li class="nav-item REPORT">
+                            <a href="http://localhost:8080/income" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Income Report</p>
+                            </a>
+                        </li>
+                        <li class="nav-item REPORT">
+                            <a href="http://localhost:8080/uisupplierarrease" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Supplier Arrears</p>
+                            </a>
+                        </li>
+                        <li class="nav-item REPORT">
+                            <a href="http://localhost:8080/inventory" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p style="font-size: 14px">Inventory Report</p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+
+        <!-- /.sidebar -->
+    </aside>
+
+
+    <!-- Page Content  -->
+    <div class="content-wrapper">
+
+        <!-- Content -->
+        <div class="container-fluid dashbordbody p-0">
+
+            <div class="row" id="ui">
+                <div class="col-md-12">
+                    <div class="card cardstyle">
+                        <div class="card-header text-center cardhead" style=" background-color: rgba(27,26,71,0.99);">
+                            <h3 class="text-white">Employee Management</h3>
+                        </div>
+
+                        <div class="card-body bg-white">
+
+                            <ul class="nav nav-tabs mb-2">
+                                <li class="nav-item" onclick="changeTab('form')">
+                                    <a class="nav-link active" id="tbForm" href="#">Employee Add Form</a>
+                                </li>
+                                <li class="nav-item" onclick="changeTab('table')">
+                                    <a class="nav-link" id="tbTable" href="#">Employee View Table</a>
+                                </li>
+                            </ul>
+
+                            <div class="row p-3" id="divFrom">
+                                <div class="col-md-12">
+                                    <form class="" id="employeeform" onsubmit="return false">
+
+
+                                        <div class="row">
+                                            <div class="col-md-12 pull-right text-right">
+                                                <p class="font-weight-bold text-dark"><span
+                                                        style="color:red; font-size:24px"><b>*</b></span> Required</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+
+                                                            <label class="" for="txtNumber"> <b>Registration Number : <span
+                                                                    style="color:red; font-size:24px">*</span></b></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i class="fa fa-barcode" aria-hidden="true"></i></span>
+                                                                </div>
+                                                            <input type="text" id="txtNumber"
+                                                                   placeholder="Enter Number Here"
+                                                                   class="form-control" required disabled/>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="" for="txtCallingname"> <b> Calling
+                                                                Name :
+                                                                <span style="color:red; font-size:24px">*</span></b></label>
+
+                                                            <div class="input-group">
+
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                                                                </div>
+                                                            <input type="text" id="txtCallingname"
+                                                                   placeholder="eg :- Johne"
+                                                                   class="form-control" required
+                                                                   data-toggle="tooltip" data-placement="bottom"
+                                                                   title="eg :- Johne"
+                                                                   onkeyup="textFieldBinder(txtCallingname,'^([A-Z][a-z]+)$','employee','callingname','oldemployee')"/>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="" for="txtFullname"> <b> Full Name : <span
+                                                            style="color:red; font-size:24px">*</span></b></label>
+                                                    <div class="input-group">
+
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                                                        </div>
+
+                                                    <input type="text" id="txtFullname"
+                                                           placeholder="eg :- Johne Smith"
+                                                           class="form-control" required
+                                                           data-toggle="tooltip" data-placement="bottom"
+                                                           title="eg :- Johne Smith "
+                                                           onkeyup="textFieldBinder(txtFullname,'^([a-zA-Z]+|[a-zA-Z]+\\s{1}[a-zA-Z]{1,}|[a-zA-Z]+\\s{1}[a-zA-Z]{3,}\\s{1}[a-zA-Z]{1,})$','employee','fullname','oldemployee')"/>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <div class="form-group" id="print-form">
+                                                    <script>
+                                                        // (parentid, photofeildId,labletext,lablesize,type, maxsize,datarequerd,object, property , oldobject )
+                                                        fileChooser('print-form', 'flePhoto', 'Photo', 4, ['.jpg', '.png'], 5, true, 'employee', 'photo', 'oldemployee');
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="" for="txtNIC"> <b> NIC : <span
+                                                            style="color:red; font-size:24px">*</span></b></label>
+                                                    <div class="input-group">
+
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-address-card" aria-hidden="true"></i></span>
+                                                        </div>
+                                                    <input type="text" id="txtNIC"
+                                                           placeholder="9 digite plus vVxX or 12 digits"
+                                                           class="form-control" required
+                                                           data-toggle="tooltip" data-placement="bottom"
+                                                           title="9 digite plus vVxX or 12 digits"
+                                                           onkeyup="nicTestFieldBinder(txtNIC,'^(([0-9]{9}[vVxX])|([0-9]{12}))$','','','')"/>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+
+                                                    <label class="" for="cmbGender"><b>Gender : <span
+                                                            style="color:red; font-size:24px">*</span></b></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-venus-mars" aria-hidden="true"></i></span>
+                                                        </div>
+                                                    <select id="cmbGender" class="form-control" disabled required
+                                                            onchange="comboBoxBinder(cmbGender,'','employee','genderId','oldemployee')"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="" for="dteDOBirth"> <b>Birth Date : <span
+                                                            style="color:red; font-size:24px">*</span></b></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>
+                                                        </div>
+
+                                                    <input type="date" id="dteDOBirth" class="form-control" disabled
+                                                           required
+                                                           onkeyup="textFieldBinder(dteDOBirth,'','employee','dobirth','oldemployee')"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="" for="txtAddress"> <b> Address : <span
+                                                            style="color:red; font-size:24px">*</span></b></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-address-book" aria-hidden="true"></i></span>
+                                                        </div>
+                                                    <textarea id="txtAddress" placeholder="Enter Address Here"
+                                                              class="form-control" required  data-toggle="tooltip" title="eg :- New" data-placement="bottom"
+                                                              onkeyup="textFieldBinder(txtAddress,'^([\\w\\/\\-,\\s]{2,})$','employee','address','oldemployee')"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="" for="txtDescription"> <b> Description : <span
+                                                            style="color:red; font-size:24px"></span> </b></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-address-book" aria-hidden="true"></i></span>
+                                                        </div>
+
+                                                    <textarea id="txtDescription"
+                                                              placeholder="Enter Description Here (optional)"
+                                                              class="form-control" data-toggle="tooltip" title="eg :- New" data-placement="bottom"
+                                                              onkeyup="textFieldBinder(txtDescription,'^.*$','employee','description','oldemployee')"></textarea></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="" for="txtMobile"> <b> Mobile-Number : <span
+                                                            style="color:red; font-size:24px">*</span></b></label>
+                                                 <div class="input-group">
+                                                     <div class="input-group-prepend">
+                                                         <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                                                     </div>
+                                                    <input type="text" id="txtMobile"
+                                                           placeholder="Enter Mobile-Number Here"
+                                                           class="form-control" required data-toggle="tooltip" title="eg :- 0714526589" data-placement="bottom"
+                                                           onkeyup="textFieldBinder(txtMobile,'^0\\d{9}$','employee','mobile','oldemployee')"/>
+                                                 </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="" for="txtLand"> <b> Land-Number :<span
+                                                            style="visibility: hidden; font-size:24px"></span>
+                                                    </b></label>
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                                        </div>
+
+                                                    <input type="text" id="txtLand"
+                                                           placeholder="Enter Land-Number Here (optional)"
+                                                           class="form-control" data-toggle="tooltip" title="eg :- 0112453698" data-placement="bottom"
+                                                           onkeyup="textFieldBinder(txtLand,'^0\\d{9}$','employee','land','oldemployee')"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="" for="cmbCivilstatus"><b>Civilstatus : <span
+                                                            style="color:red; font-size:24px">*</span></b></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                                                        </div>
+                                                    <select id="cmbCivilstatus" class="form-control" required
+                                                            onchange="comboBoxBinder(cmbCivilstatus,'','employee','civilstatusId','oldemployee')"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="" for="cmbDesignation"><b>  Designation :
+                                                        <span style="color:red; font-size:24px">*</span></b></label>
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                                                        </div>
+
+                                                    <select id="cmbDesignation" class="form-control" required
+                                                            onchange="comboBoxBinder(cmbDesignation,'','employee','designationId','oldemployee')"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="" for="txtEmail"> <b>Email : <span
+                                                            style="color:red; font-size:24px">*</span></b></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i
+                                                                    class="fa fa-mail-bulk"></i></span>
+                                                        </div>
+                                                        <input type="email" class="form-control" id="txtEmail" required
+                                                               onkeyup="textFieldBinder(txtEmail,'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$','employee','email','oldemployee')"
+                                                               placeholder="Enter Email Here" data-toggle="tooltip" data-placement="bottom"
+                                                               title="eg :- John@gmail.com">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="" for="dteDOAssignment"> <b> Assignment Date :
+                                                        <span style="color:red; font-size:24px">*</span></b></label>
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>
+                                                        </div>
+                                                    <input type="date" id="dteDOAssignment" class="form-control"
+                                                           required
+                                                           onkeyup="textFieldBinder(dteDOAssignment,'','employee','doassignment','oldemployee')"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="" for="cmbEmployeestatus"><b> Status : <span
+                                                            style="color:red; font-size:24px">*</span></b></label>
+                                                    <div class="input-group">
+
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                                                        </div>
+
+                                                    <select id="cmbEmployeestatus" class="form-control" required
+                                                            onchange="comboBoxBinder(cmbEmployeestatus,'','employee','employeestatusId','oldemployee')"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="text-right">
+                                            <button class="btn btn-info " type="button" id="btnClear"
+                                                    style="width: 25%">
+                                                <i class="fas fa-recycle mr-2"></i> Clear
+                                            </button>
+                                            <button class="btn btn-warning" type="submit" id="btnUpdate"
+                                                    style="width: 25%"><i class="fas fa-edit mr-2"></i> Update
+                                            </button>
+                                            <button class="btn btn-success" style="width: 25%" type="submit"
+                                                    id="btnAdd">
+                                                <i class='fas fa-plus-circle mr-2'></i>Add
+                                            </button>
+
+                                        </div>
+
+
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="row p-3 formcontent" id="divTable">
+                                <div class="container-fluid">
+                                        <input type="button" class="btn tblbtnprint font-weight-bold" value="Print Table"
+                                               id="btnPrintTable" onclick="btnPrintTableMC()"/>
+
+
+                                    <div class="float-right">
+                                        <input placeholder="Search" class="form-control" type="text"
+                                               id="txtSearchName"/>
+                                    </div>
+
+                                </div>
+
+
+                                <hr/>
+                                <div class="table-responsive" id="tableParent" class="table-container ml-2">
+
+                                    <script>
+
+                                        function getNameColumn(ob) {
+                                            return ob.callingname + "(" + ob.number + ")";
+                                        }
+
+                                        var metadata = [
+                                            {name: 'Number', search: true, datatype: 'text', property: 'number'},
+                                            {name: 'Name', search: true, datatype: 'text', property: 'callingname'},
+                                            {name: 'NIC', search: true, datatype: 'text', property: 'nic'},
+                                            {name: 'Address', search: true, datatype: 'text', property: 'address'},
+                                            {name: 'Mobile', search: true, datatype: 'text', property: 'mobile'},
+                                            {name: 'Assigned Date', search: true, datatype: 'text', property: 'doassignment'},
+                                            {
+                                                name: 'Designation',
+                                                search: true,
+                                                datatype: 'text',
+                                                property: 'designationId.name'
+                                            },
+
+                                            {
+                                                name: 'Status',
+                                                search: true,
+                                                datatype: 'text',
+                                                property: 'employeestatusId.name'
+                                            }
+                                        ];
+                                        table("tableParent", "tblEmployee", metadata, true);
+
+                                    </script>
+
+
+                                </div>
+
+                                <div>
+                                    <div style="display: inline-block ; float: left">
+                                        <select class="form-control input" id="cmbPageSize"
+                                                style="width: 80px;">
+                                            <option selected value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="30">30</option>
+                                            <option value="500">500</option>
+                                            <option value="1000">1000</option>
+                                        </select>
+                                        <script>
+                                            cmbPageSize.onchange = function chnagePageSize() {
+                                                activepage = 1;
+                                                btnSearchMC();
+                                            };
+                                        </script>
+                                    </div>
+                                    <div style="display: inline-block; margin-left: 10px;">
+                                        <ul id="pagination" class="pagination"></ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="card-footer">
+                            <div id="err">
+                                <h3>Error Log</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<table id="printformtable" class="table table-striped table-bordered mt-5" style="display: none">
+    <tbody>
+    <tr>
+        <td>Employee Number :</td>
+        <td id="x"><input type="text" id="tdnum" style="border: 0px solid; border-color: white"></td>
+    </tr>
+
+    <tr>
+        <td>Employee Calling Name :</td>
+        <td id="tdcname"></td>
+    </tr>
+    <tr>
+        <td>Employee Nic :</td>
+        <td id="tdnic"></td>
+    </tr>
+    <tr>
+        <td>Employee Gender :</td>
+        <td id="tdgender"></td>
+    </tr>
+
+    <tr>
+        <td>Employee Address :</td>
+        <td id="tdaddress"></td>
+    </tr>
+
+    <tr>
+        <td>Employee Mobile Nmber :</td>
+        <td id="tdmobile"></td>
+    </tr>
+    <tr>
+        <td>Employee Land Number :</td>
+        <td id="tdland"></td>
+    </tr>
+    <tr>
+        <td>Employee Designation :</td>
+        <td id="tddesg"></td>
+    </tr>
+    <tr>
+        <td>Employee Assign Date :</td>
+        <td id="tdasdate"></td>
+    </tr>
+    <tr>
+        <td>Employee Status :</td>
+        <td id="tdestatus"></td>
+    </tr>
+
+    </tbody>
+</table>
+
+<div class="overlay"></div>
+
+<!-- Settings Modal-->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog"
+     aria-labelledby="settingsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" id="modalContent">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"><i
+                        class="fas fa-cog"></i> Settings</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form id="changePasswordForm" onsubmit="return false">
+                    <div class="form-row">
+                        <!-- Username -->
+                        <div class="form-group col-md-12">
+                            <label for="txtUsernameView" class="text-blue">
+                                <b>Username</b>
+                            </label>
+                            <div readonly class="form-control-plaintext"
+                                 id="txtUsernameView"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Current Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtCurrentPassword"
+                                   class="text-blue"><b>Current Password</b> <i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtCurrentPassword"
+                                   onkeyup="textFieldBinder(txtCurrentPassword, '^[0-9]{5,}$', 'changePassword', 'currentPassword', 'oldChangePassword')">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- New Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtNewPassword" class="text-blue"><b>New
+                                Password</b><i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtNewPassword"
+                                   onkeyup="passwordFieldBinder(txtNewPassword, txtConfirmPassword, '^[0-9]{5,}$', 'changePassword', '', 'oldChangePassword')">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Confirm Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtConfirmPassword"
+                                   class="text-blue"><b>Confirm
+                                Password</b><i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtConfirmPassword"
+                                   onkeyup="passwordFieldBinder(txtNewPassword, txtConfirmPassword, '^[0-9]{5,}$', 'changePassword', 'newPassword', 'oldChangePassword')">
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="brnClosechnagepasswordmodle" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary"
+                        onclick="btnSaveChangePasswordMC()">Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Template Links-->
+
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+
+<!-- Summernote -->
+<script src="resources/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="resources/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="resources/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="resources/dist/js/demo.js"></script>
+
+<!-- Template Links-->
+
+</body>
+</html>
+
